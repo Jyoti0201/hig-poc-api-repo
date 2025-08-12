@@ -17,14 +17,14 @@ jobs:
     steps:
     
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     
-    # - name: Cache Depenedencies
-    #   uses: actions/setup-java@v2
-    #   with:
-    #     java-version: '11'
-    #     distribution: 'adopt'
-    #     cache: maven
+    - name: Cache Depenedencies
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: maven
     
     - name: Build with maven
       run: mvn -B clean package -DskipMunitTests -Dmule.connectedAppClientId=${{ env.CONNECTED_APP_CLIENT_ID }} -Dmule.connectedAppClientSecret=${{ env.CONNECTED_APP_CLIENT_SECRET }} -s .maven/settings.xml
