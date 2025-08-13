@@ -38,7 +38,7 @@
 						<target>${mule.target}</target>
 						<businessGroupId>${project.groupId}</businessGroupId>
 						<environment>${mule.environment}</environment>
-						<muleVersion>4.6.7</muleVersion>
+						<muleVersion>4.6.13</muleVersion>
 						<server>hig-anypoint-credentials</server>
 						<applicationName>${project.name}</applicationName>
 						<replicas>${mule.replicas}</replicas>
