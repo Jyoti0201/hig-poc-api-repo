@@ -3,17 +3,12 @@
 		<server>
 			<id>hig-anypoint-credentials</id>
 			<username>~~~Client~~~</username>
-			<password>${mule.connectedAppClientId}~?~${mule.connectedAppClientSecret}</password>
+			<password>83a185a0e82f4c85808cbcde45714e87~?~$4Ac3459Ac2874A539A20355B398D0343</password>
 		</server>
 		<server>
 			<id>anypoint-exchange-v3</id>
 			<username>~~~Client~~~</username>
-			<password>${mule.connectedAppClientId}~?~${mule.connectedAppClientSecret}</password>
-		</server>
-		<server>
-			<id>MuleRepository</id>
-			<username>${mule.NEXUS_USERNAME}</username>
-			<password>${mule.NEXUS_PASSWORD}</password>
+			<password>83a185a0e82f4c85808cbcde45714e87~?~$4Ac3459Ac2874A539A20355B398D0343</password>
 		</server>
 	</servers>
 	<profiles>
