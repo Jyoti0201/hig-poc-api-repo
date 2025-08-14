@@ -11,16 +11,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      CONNECTED_APP_CLIENT_ID: 83a185a0e82f4c85808cbcde45714e87      
-      CONNECTED_APP_CLIENT_SECRET: 4Ac3459Ac2874A539A20355B398D0343
+      CONNECTED_APP_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+      CONNECTED_APP_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+      anypoint.platform.client_id: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID_DEV}}
+      anypoint.platform.client_secret: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET_DEV}}
+
     
     steps:
     
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     
     - name: Cache Depenedencies
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v4
       with:
         java-version: '11'
         distribution: 'adopt'
@@ -47,14 +50,16 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      CONNECTED_APP_CLIENT_ID: 83a185a0e82f4c85808cbcde45714e87      
-      CONNECTED_APP_CLIENT_SECRET: 4Ac3459Ac2874A539A20355B398D0343
+      CONNECTED_APP_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
+      CONNECTED_APP_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
+      anypoint.platform.client_id: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID}}
+      anypoint.platform.client_secret: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET}}
     steps:    
     
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     
-    - uses: actions/cache@v1
+    - uses: actions/cache@v4
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -66,9 +71,7 @@ jobs:
         name: artifacts
     
     - name: Publish to Exchange
-      run: mvn deploy -s .maven/settings.xml -DskipTests -Dmule.connectedAppClientId=${{ env.CONNECTED_APP_CLIENT_ID }} -Dmule.connectedAppClientSecret=${{ env.CONNECTED_APP_CLIENT_SECRET }} -DapplicationName=hif-poc-api -Dmule.grantType=client_credentials -Dmule.target=bio-botanica-private-space -Dmule.environment=Sandbox -Dmule.replicas=1 -Dmule.vCores=0.1 -Danypoint.uri=https://anypoint.mulesoft.com -Dcloudhub.provider=MC -Dmule.anypoint.platform.client_id=35233013ec1c417bbaa8364a88804df4  -Dmule.anypoint.platform.client_secret=
-286098F7a1C6447581385950C2Cf10C1 --file pom.xml 
+      run: mvn deploy -s .maven/settings.xml -DskipTests -Dmule.connectedAppClientId=${{ env.CONNECTED_APP_CLIENT_ID }} -Dmule.connectedAppClientSecret=${{ env.CONNECTED_APP_CLIENT_SECRET }} -DapplicationName=hig-poc-api -Dmule.grantType=client_credentials -Dmule.target=bio-botanica-private-space -Dmule.environment=Sandbox -Dmule.replicas=1 -Dmule.vCores=0.1 -Danypoint.uri=https://anypoint.mulesoft.com -Dcloudhub.provider=MC -Dmule.anypoint.platform.client_id=${{ env.anypoint_platform_client_id }}  -Dmule.anypoint.platform.client_secret=${{ env.anypoint_platform_client_secret}} --file pom.xml 
       
     - name: Deploy to Development
-      run: mvn deploy -s .maven/settings.xml -DskipTests -DmuleDeploy -Dmule.connectedAppClientId=${{ env.CONNECTED_APP_CLIENT_ID }} -Dmule.connectedAppClientSecret=${{ env.CONNECTED_APP_CLIENT_SECRET }} -DapplicationName=hif-poc-api -Dmule.grantType=client_credentials -Dmule.target=bio-botanica-private-space -Dmule.environment=Sandbox -Dmule.replicas=1 -Dmule.vCores=0.1 -Danypoint.uri=https://anypoint.mulesoft.com -Dcloudhub.provider=MC -Dmule.anypoint.platform.client_id=35233013ec1c417bbaa8364a88804df4  -Dmule.anypoint.platform.client_secret=
-286098F7a1C6447581385950C2Cf10C1 --file pom.xml 
+      run: mvn deploy -s .maven/settings.xml -DskipTests -DmuleDeploy -Dmule.connectedAppClientId=${{ env.CONNECTED_APP_CLIENT_ID }} -Dmule.connectedAppClientSecret=${{ env.CONNECTED_APP_CLIENT_SECRET }} -DapplicationName=hig-poc-api -Dmule.grantType=client_credentials -Dmule.target=Cloudhub-US-East-2 -Dmule.environment=Sandbox -Dmule.replicas=1 -Dmule.vCores=0.1 -Danypoint.uri=https://anypoint.mulesoft.com -Dcloudhub.provider=MC -Dmule.anypoint.platform.client_id=${{ env.anypoint_platform_client_id }}  -Dmule.anypoint.platform.client_secret=${{ env.anypoint_platform_client_secret}} --file pom.xml 

@@ -6,15 +6,10 @@
 			<password>${mule.connectedAppClientId}~?~${mule.connectedAppClientSecret}</password>
 		</server>
 		<server>
-			<id>anypoint-exchange-v3</id>
-			<username>~~~Client~~~</username>
-			<password>${mule.connectedAppClientId}~?~${mule.connectedAppClientSecret}</password>
-		</server>
-		<server>
-			<id>MuleRepository</id>
-			<username>${mule.NEXUS_USERNAME}</username>
-			<password>${mule.NEXUS_PASSWORD}</password>
-		</server>
+            <id>anypoint-exchange-v3</id>
+            <username>Jyoti-error</username>
+            <password>Jyoti@#12345</password>
+        </server>
 	</servers>
 	<profiles>
 		<profile>
