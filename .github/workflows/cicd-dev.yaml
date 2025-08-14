@@ -19,10 +19,7 @@ jobs:
 
     
     steps:
-    only:
-    - dev
-    - /^feature\/.*$/
-    
+
     - name: Checkout repository
       uses: actions/checkout@v4
     
@@ -60,8 +57,6 @@ jobs:
       anypoint.platform.client_secret: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET}}
  
     steps:    
-    only:
-    - dev
       
     - name: Checkout repository
       uses: actions/checkout@v4
