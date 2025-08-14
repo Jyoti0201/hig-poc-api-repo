@@ -4,14 +4,12 @@ name: Build and Deploy to Development
 
 on:
   push:
-    branches: [dev,feature]
+    branches: [dev]
   workflow_dispatch:
     
 jobs:
   build:
-    only:
-       - dev
-       - feature
+   
     runs-on: ubuntu-latest
     env:
       CONNECTED_APP_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
@@ -21,7 +19,6 @@ jobs:
 
     
     steps:
-    
     - name: Checkout repository
       uses: actions/checkout@v4
     
@@ -50,9 +47,6 @@ jobs:
       if: always()  
       
   deploy:
-    only:
-       - dev
-       - feature
     needs: build
     runs-on: ubuntu-latest
     env:
