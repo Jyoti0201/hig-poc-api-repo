@@ -4,7 +4,8 @@ name: Build and Deploy to Development
 
 on:
   push:
-    branches: [dev]
+    branches: [dev,feature]
+             
   workflow_dispatch:
     
 jobs:
@@ -54,6 +55,7 @@ jobs:
       CONNECTED_APP_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
       anypoint.platform.client_id: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID}}
       anypoint.platform.client_secret: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET}}
+      if: github.ref == 'refs/heads/dev'
     steps:    
     
     - name: Checkout repository
