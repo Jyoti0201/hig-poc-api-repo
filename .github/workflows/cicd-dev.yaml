@@ -9,6 +9,7 @@ on:
     
 jobs:
   build:
+   
     runs-on: ubuntu-latest
     env:
       CONNECTED_APP_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
@@ -18,7 +19,6 @@ jobs:
 
     
     steps:
-    
     - name: Checkout repository
       uses: actions/checkout@v4
     
