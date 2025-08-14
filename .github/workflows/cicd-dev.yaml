@@ -5,11 +5,13 @@ name: Build and Deploy to Development
 on:
   push:
     branches: [dev,feature]
-             
   workflow_dispatch:
     
 jobs:
   build:
+    only:
+       - dev
+       - feature
     runs-on: ubuntu-latest
     env:
       CONNECTED_APP_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
@@ -19,7 +21,7 @@ jobs:
 
     
     steps:
-
+    
     - name: Checkout repository
       uses: actions/checkout@v4
     
@@ -48,6 +50,9 @@ jobs:
       if: always()  
       
   deploy:
+    only:
+       - dev
+       - feature
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -55,9 +60,8 @@ jobs:
       CONNECTED_APP_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
       anypoint.platform.client_id: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_ID}}
       anypoint.platform.client_secret: ${{ secrets.ANYPOINT_PLATFORM_CLIENT_SECRET}}
- 
     steps:    
-      
+    
     - name: Checkout repository
       uses: actions/checkout@v4
     
