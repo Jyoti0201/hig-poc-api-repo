@@ -4,7 +4,9 @@ name: Build and Deploy to Development
 
 on:
   push:
-    branches: [dev]
+    branches:
+      - dev
+      - feature
   workflow_dispatch:
     
 jobs:
@@ -49,6 +51,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    if: github.ref == 'ref/heads/dev'
     env:
       CONNECTED_APP_CLIENT_ID: ${{ secrets.CONNECTED_APP_CLIENT_ID }}
       CONNECTED_APP_CLIENT_SECRET: ${{ secrets.CONNECTED_APP_CLIENT_SECRET }}
